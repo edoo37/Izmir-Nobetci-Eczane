@@ -1,2 +1,2 @@
 # Izmir-Nobetci-Eczane
-Retrofitle Eczane
+İBB apisini kullanarak Retrofit, Open Street Map kullanılarak Reyclerview vasıtası ile nöbetçi eczanelerin listelenmesi
