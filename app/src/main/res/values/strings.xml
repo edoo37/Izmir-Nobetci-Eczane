@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">İzmir Eczane Uygulaması</string>
+    <string name="title_activity_map_details">MapDetailsActivity</string>
+    <string name="ecz_bolge">İzmir Bölgesi</string>
+</resources>
