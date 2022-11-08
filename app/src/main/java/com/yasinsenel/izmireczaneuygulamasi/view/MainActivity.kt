@@ -77,7 +77,9 @@ class MainActivity : AppCompatActivity(){
                         rvList.adapter = listItemsAdapter
                         listItemsAdapter.fillAdapter(list.filter { it.Bolge == getLocation } as ArrayList<EczaneDataClassItem>)
                         //listItemsAdapter.fillAdapter(list.filter { it.Bolge!!.contains(getLocation)} as ArrayList<EczaneDataClassItem>)
-                        textView.text = "${getLocation} bölgesinde bulunan nöbetçi eczaneleri görüntülüyorsunuz."
+                        if(getLocation != ""){
+                            textView.text = "${getLocation} bölgesinde bulunan nöbetçi eczaneleri görüntülüyorsunuz."
+                        }
                     }
                 }
             }
