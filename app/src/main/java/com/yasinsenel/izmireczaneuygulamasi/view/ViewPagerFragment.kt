@@ -27,14 +27,15 @@ class ViewPagerFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentViewPagerBinding.inflate(inflater,container,false)
 
-        val fragmentList : ArrayList<Fragment> = arrayListOf()
-        fragmentList.add(FirstFragment())
-        fragmentList.add(SecondFragment())
-        fragmentList.add(ThirdFragment())
-
-        val adapter = ViewPagerAdapter(fragmentList,requireActivity().supportFragmentManager,lifecycle)
-        viewPager2.adapter = adapter
-
+        val fragmentList = arrayListOf<Fragment>(
+            FirstFragment(),
+            SecondFragment(),
+            ThirdFragment()
+        )
+        binding.apply {
+            val adapter = ViewPagerAdapter(fragmentList,requireActivity().supportFragmentManager,lifecycle)
+            viewPager2.adapter = adapter
+        }
         return binding.root
     }
 }
