@@ -25,7 +25,12 @@ class SecondFragment : Fragment() {
         val view = binding.root
         val pager = activity?.viewPager2
         binding.apply {
-            pager?.currentItem = 2
+            buttonSkip.setOnClickListener {
+                pager?.currentItem = 2
+            }
+            buttonBack.setOnClickListener {
+                pager?.currentItem = 0
+            }
         }
         return view
     }

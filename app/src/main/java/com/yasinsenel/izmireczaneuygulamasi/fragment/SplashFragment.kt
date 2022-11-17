@@ -1,5 +1,6 @@
 package com.yasinsenel.izmireczaneuygulamasi.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -23,10 +24,19 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
+            if(checkOnboardingFinished()){
+                findNavController().navigate(R.id.action_splashFragment_to_mainActivity)
+            }
+            else{
+                findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
+            }
         },3000)
         binding = FragmentSplashBinding.inflate(inflater,container,false)
         val view = binding.root
         return view
+    }
+    private fun checkOnboardingFinished() : Boolean{
+        val sharedPref = requireActivity().getSharedPreferences("",Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("Finished",false)
     }
 }

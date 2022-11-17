@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.yasinsenel.izmireczaneuygulamasi.R
 import com.yasinsenel.izmireczaneuygulamasi.databinding.FragmentThirdBinding
 import com.yasinsenel.izmireczaneuygulamasi.view.MainActivity
+import kotlinx.android.synthetic.main.fragment_view_pager.*
 
 
 class ThirdFragment : Fragment() {
@@ -26,10 +27,14 @@ class ThirdFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentThirdBinding.inflate(inflater,container,false)
         val view = binding.root
+        val pager = activity?.viewPager2
         binding.apply {
             buttonFinish.setOnClickListener {
                 findNavController().navigate(R.id.action_viewPagerFragment_to_mainActivity)
                 onBoardingFinish()
+            }
+            buttonBack.setOnClickListener {
+                pager?.currentItem = 1
             }
         }
         return view

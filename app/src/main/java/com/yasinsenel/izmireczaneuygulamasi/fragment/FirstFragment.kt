@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yasinsenel.izmireczaneuygulamasi.databinding.FragmentFirstBinding
+import kotlinx.android.synthetic.main.fragment_third.*
 import kotlinx.android.synthetic.main.fragment_view_pager.*
 
 
