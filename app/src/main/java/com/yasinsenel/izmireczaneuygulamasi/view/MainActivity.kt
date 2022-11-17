@@ -6,9 +6,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.yasinsenel.izmireczaneuygulamasi.R
 import com.yasinsenel.izmireczaneuygulamasi.adapter.ListItemsAdapter
 import com.yasinsenel.izmireczaneuygulamasi.databinding.ActivityMainBinding
 import com.yasinsenel.izmireczaneuygulamasi.data.EczaneDataClass
@@ -34,11 +32,6 @@ class MainActivity : AppCompatActivity(){
         val getShared = sharedPreferences.getString("kayit","")
         setRetrofitSettings(getShared)
 
-        binding.apply {
-            rvList.setOnClickListener {
-
-            }
-        }
     }
 
     fun setRetrofitSettings(getLocation : String?){
@@ -47,7 +40,9 @@ class MainActivity : AppCompatActivity(){
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(EczaneAPI::class.java)
-
+        binding.apply {
+            progressBar.solidColor
+        }
         val retrofitData = retrofit.getData()
 
         retrofitData.enqueue(object : Callback<EczaneDataClass>{
@@ -75,7 +70,8 @@ class MainActivity : AppCompatActivity(){
                                 it.UzaklikMetre)
                             )
                         }
-
+                        progressBar.visibility = View.GONE
+                        textLoading.visibility = View.GONE
                         rvList.layoutManager = LinearLayoutManager(this@MainActivity,LinearLayoutManager.VERTICAL,false)
                         rvList.adapter = listItemsAdapter
                         listItemsAdapter.fillAdapter(list.filter { it.Bolge == getLocation } as ArrayList<EczaneDataClassItem>)
