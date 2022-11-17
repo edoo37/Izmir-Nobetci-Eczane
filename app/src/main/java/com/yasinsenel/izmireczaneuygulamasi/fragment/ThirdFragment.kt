@@ -1,5 +1,6 @@
 package com.yasinsenel.izmireczaneuygulamasi.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -26,11 +27,17 @@ class ThirdFragment : Fragment() {
         binding = FragmentThirdBinding.inflate(inflater,container,false)
         val view = binding.root
         binding.apply {
-            button.setOnClickListener {
-                val intent = Intent(requireContext(),MainActivity::class.java)
-                startActivity(intent)
+            buttonFinish.setOnClickListener {
+                findNavController().navigate(R.id.action_viewPagerFragment_to_mainActivity)
+                onBoardingFinish()
             }
         }
         return view
+    }
+    private fun onBoardingFinish(){
+        val sharedPref = requireActivity().getSharedPreferences("", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean("Finished",true)
+        editor.apply()
     }
 }

@@ -6,7 +6,9 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.yasinsenel.izmireczaneuygulamasi.R
 import com.yasinsenel.izmireczaneuygulamasi.adapter.ListItemsAdapter
 import com.yasinsenel.izmireczaneuygulamasi.databinding.ActivityMainBinding
 import com.yasinsenel.izmireczaneuygulamasi.data.EczaneDataClass
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity(){
     private val BASE_URL = "https://openapi.izmir.bel.tr/api/"
     private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
+        //installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
