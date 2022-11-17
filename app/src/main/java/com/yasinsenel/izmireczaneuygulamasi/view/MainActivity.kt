@@ -1,11 +1,14 @@
 package com.yasinsenel.izmireczaneuygulamasi.view
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yasinsenel.izmireczaneuygulamasi.adapter.ListItemsAdapter
 import com.yasinsenel.izmireczaneuygulamasi.databinding.ActivityMainBinding
@@ -26,7 +29,7 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        checkPermission()
 
         sharedPreferences = getSharedPreferences("com.yasinsenel.zmieczaneuygulamas", Context.MODE_PRIVATE)
         val getShared = sharedPreferences.getString("kayit","")
@@ -93,6 +96,11 @@ class MainActivity : AppCompatActivity(){
         val intent = Intent(this@MainActivity, SelectAdressActivity::class.java)
         intent.putParcelableArrayListExtra("veri",list)
         startActivity(intent)
+    }
+    fun checkPermission(){
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE),101)
+        }
     }
 }
 

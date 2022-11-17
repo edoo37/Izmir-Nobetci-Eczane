@@ -32,16 +32,32 @@
         android:breakStrategy="balanced"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_name"/>
-    <TextView
-        android:id="@+id/text_phone"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/img_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Telefon"
+        android:drawableStart="@drawable/img_phone"
+        android:text="Ara"
+        android:background="@drawable/button_layout"
+        android:padding="10dp"
+        android:focusable="true"
         android:layout_margin="10dp"
-        android:textSize="12sp"
-        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/text_address"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/mapView"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/img_navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/img_navigation"
+        android:text="YOL TARİFİ"
+        android:focusable="true"
+        android:padding="10dp"
+        android:background="@drawable/button_layout"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/text_address"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/mapView"/>
 
     <ImageView
@@ -56,7 +72,7 @@
         android:id="@+id/mapView"
         android:layout_width="0dp"
         android:layout_height="150dp"
-        app:layout_constraintTop_toBottomOf="@id/text_phone"
+        app:layout_constraintTop_toBottomOf="@id/img_phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

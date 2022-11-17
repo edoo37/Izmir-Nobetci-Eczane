@@ -1,6 +1,8 @@
 package com.yasinsenel.izmireczaneuygulamasi.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -20,9 +22,8 @@ class ListItemsAdapter : RecyclerView.Adapter<ListItemsAdapter.Holder>() {
         fun bind(data : EczaneDataClassItem){
             binding.apply{
 
-                    textName.text = data.Adi
-                    textAddress.text = data.Adres
-                    textPhone.text = data.Telefon
+                textName.text = data.Adi
+                textAddress.text = data.Adres
 
                 val mapPoint = GeoPoint(data.LokasyonX!!.toDouble(),data.LokasyonY!!.toDouble())
                 mapView.setTileSource(TileSourceFactory.MAPNIK)
@@ -41,6 +42,27 @@ class ListItemsAdapter : RecyclerView.Adapter<ListItemsAdapter.Holder>() {
                 mapView.invalidate()
             }
         }
+
+        fun dial(dialData : EczaneDataClassItem){
+            binding.apply{
+                imgPhone.setOnClickListener {
+                    val getPhone = dialData.Telefon
+                    val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + Uri.encode(getPhone)))
+                    context.startActivity(intent)
+                }
+            }
+        }
+        fun navigationEcz(navData : EczaneDataClassItem){
+            binding.apply {
+                imgNavigation.setOnClickListener {
+                    val getNavX = navData.LokasyonX
+                    val getNavY = navData.LokasyonY
+                    val intent = Intent(Intent.ACTION_VIEW,Uri.parse("geo:0,0?q=${getNavX},${getNavY}(${navData.Adi})"))
+                    intent.setPackage("com.google.android.apps.maps")
+                    context.startActivity(intent)
+                }
+            }
+        }
     }
 
     fun fillAdapter(itemsResponse : ArrayList<EczaneDataClassItem>){
@@ -57,9 +79,12 @@ class ListItemsAdapter : RecyclerView.Adapter<ListItemsAdapter.Holder>() {
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val data = items[position]
         holder.bind(data)
+        holder.dial(data)
+        holder.navigationEcz(data)
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
+
 }
